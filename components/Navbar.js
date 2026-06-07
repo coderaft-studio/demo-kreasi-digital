@@ -1,63 +1,58 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const links = [
-  { href: "#layanan", label: "Layanan" },
-  { href: "#portofolio", label: "Portofolio" },
-  { href: "#harga", label: "Harga" },
-  { href: "#kontak", label: "Kontak" },
-];
+const R = "#e51e2a";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-
+  const [sc, setSc] = useState(false);
+  const [op, setOp] = useState(false);
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 40);
+    const fn = () => setSc(window.scrollY > 40);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-slate-950 shadow-lg shadow-cyan-900/10" : "bg-transparent"}`}>
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/" className="font-bold text-xl text-white tracking-tight">
-          Kreasi<span className="text-cyan-400">Digital</span>
-          <span className="text-cyan-500 text-xs ml-1 font-normal">™</span>
-        </a>
+  const links = ["Layanan", "Portofolio", "Harga", "Kontak"];
 
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a key={l.href} href={l.href}
-              className="text-slate-300 hover:text-cyan-400 transition-colors text-sm font-medium">
-              {l.label}
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50"
+      style={{ background: sc ? "rgba(255,255,255,0.96)" : "#fff", borderBottom: "2px solid #0a0a0a", transition: "background 0.2s" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <a href="/" className="font-black text-xl tracking-tighter" style={{ color: "#0a0a0a", textDecoration: "none" }}>
+          KREASI<span style={{ color: R }}>DIGITAL</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-0">
+          {links.map(l => (
+            <a key={l} href={`#${l.toLowerCase()}`}
+              className="font-bold text-xs uppercase tracking-widest px-5 py-4 border-l-2"
+              style={{ borderColor: "#0a0a0a", color: "#0a0a0a", textDecoration: "none", letterSpacing: "0.12em", transition: "background 0.15s, color 0.15s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#0a0a0a"; e.currentTarget.style.color = "#ffffff"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0a0a0a"; }}>
+              {l}
             </a>
           ))}
           <a href="#kontak"
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-5 py-2 rounded-lg text-sm font-bold transition-colors">
-            Konsultasi Gratis
+            className="font-black text-xs uppercase tracking-widest px-6 py-4 ml-px"
+            style={{ background: R, color: "#fff", textDecoration: "none", letterSpacing: "0.1em", borderLeft: "2px solid #0a0a0a" }}>
+            Konsultasi
           </a>
         </nav>
-
-        <button onClick={() => setOpen(!open)} className="md:hidden text-white p-2" aria-label="Menu">
-          <div className="w-6 flex flex-col gap-1.5">
-            <span className={`block h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
-            <span className={`block h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
-          </div>
+        <button onClick={() => setOp(!op)} className="md:hidden font-black text-lg" style={{ background: "none", border: "none", cursor: "pointer" }}>
+          {op ? "✕" : "☰"}
         </button>
       </div>
-
-      {open && (
-        <nav className="md:hidden bg-slate-950 border-t border-slate-800 px-6 py-4 flex flex-col gap-4">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className="text-slate-300 hover:text-cyan-400 transition-colors font-medium">
-              {l.label}
+      {op && (
+        <nav className="md:hidden flex flex-col" style={{ borderTop: "2px solid #0a0a0a" }}>
+          {links.map(l => (
+            <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOp(false)}
+              className="font-bold text-sm uppercase tracking-widest px-6 py-4"
+              style={{ borderBottom: "1px solid #0a0a0a", color: "#0a0a0a", textDecoration: "none" }}>
+              {l}
             </a>
           ))}
-          <a href="#kontak" onClick={() => setOpen(false)}
-            className="bg-cyan-500 text-slate-950 px-5 py-2 rounded-lg text-center font-bold">
+          <a href="#kontak" onClick={() => setOp(false)}
+            className="font-black text-sm uppercase tracking-widest px-6 py-4"
+            style={{ background: R, color: "#fff", textDecoration: "none" }}>
             Konsultasi Gratis
           </a>
         </nav>

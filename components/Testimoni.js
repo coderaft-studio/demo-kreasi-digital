@@ -1,41 +1,54 @@
+const R = "#e51e2a";
+
 const reviews = [
-  { name: "Rini Handayani", role: "CEO, Toko Online Rini", avatar: "RH", color: "bg-cyan-600",
-    text: "Kreasi Digital benar-benar mengubah bisnis saya. Website baru kami menghasilkan 3x lebih banyak leads dalam 2 bulan pertama. Tim mereka sangat responsif dan profesional." },
-  { name: "Budi Prasetyo", role: "Founder, Startup Fintech", avatar: "BP", color: "bg-violet-600",
-    text: "Rebranding yang mereka kerjakan luar biasa. Brand identity kami sekarang terlihat jauh lebih premium dan dipercaya investor. ROI-nya nyata dan terukur." },
-  { name: "Sinta Maharani", role: "Direktur, Klinik Kecantikan", avatar: "SM", color: "bg-emerald-600",
-    text: "Google Ads yang mereka kelola menurunkan cost per lead kami hingga 40%. Mereka benar-benar paham strategi digital, bukan sekedar vendor biasa." },
+  { no: "01", name: "Rini Handayani", role: "CEO, Toko Online Rini",       result: "+300% Leads",
+    text: "Website baru kami menghasilkan 3× lebih banyak leads dalam 2 bulan pertama. Tim Kreasi Digital sangat responsif dan profesional." },
+  { no: "02", name: "Budi Prasetyo",  role: "Founder, Startup Fintech",     result: "Series A Funded",
+    text: "Rebranding yang mereka kerjakan luar biasa. Brand identity kami jauh lebih premium dan dipercaya investor." },
+  { no: "03", name: "Sinta Maharani", role: "Direktur, Klinik Kecantikan",  result: "-40% Cost/Lead",
+    text: "Google Ads yang mereka kelola menurunkan cost per lead kami hingga 40%. Strategi yang benar-benar terukur." },
 ];
 
 export default function Testimoni() {
   return (
-    <section className="py-24 bg-slate-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm mb-3">Kata Klien</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Dipercaya <span className="text-cyan-400">150+ Bisnis</span>
-          </h2>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-yellow-400 text-2xl">★★★★★</span>
-            <span className="text-white font-bold text-xl">4.9</span>
-            <span className="text-slate-400 text-sm">(120+ ulasan)</span>
+    <section style={{ background: "#fff", borderTop: "2px solid #0a0a0a" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="grid grid-cols-2 sm:grid-cols-4" style={{ borderBottom: "2px solid #0a0a0a" }}>
+          <div className="p-6 sm:p-8" style={{ borderRight: "2px solid #0a0a0a" }}>
+            <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Testimoni</span>
+          </div>
+          <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center justify-between">
+            <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>Kata Klien Kami</h2>
+            <div className="hidden sm:flex items-center gap-2">
+              <span style={{ color: "#f59e0b", fontSize: "20px" }}>★★★★★</span>
+              <span className="font-black text-xl">4.9</span>
+            </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {reviews.map((r) => (
-            <div key={r.name} className="bg-slate-800/50 border border-slate-700/50 hover:border-cyan-500/30 rounded-2xl p-7 transition-all">
-              <div className="text-yellow-400 text-lg mb-4">★★★★★</div>
-              <p className="text-slate-300 leading-relaxed mb-6 text-sm italic">&ldquo;{r.text}&rdquo;</p>
-              <div className="flex items-center gap-3">
-                <div className={`${r.color} w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
-                  {r.avatar}
+        {/* Reviews */}
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {reviews.map((r, i) => (
+            <div key={r.no} className="p-8 sm:p-10 flex flex-col justify-between"
+              style={{
+                background: i === 1 ? "#0a0a0a" : "#fff",
+                color: i === 1 ? "#fff" : "#0a0a0a",
+                borderRight: i < 2 ? "2px solid #0a0a0a" : "none",
+                borderBottom: "2px solid #0a0a0a",
+                minHeight: "320px"
+              }}>
+              <div>
+                <div className="font-black text-4xl sm:text-6xl leading-none mb-8" style={{ color: R, fontFamily: "serif" }}>&ldquo;</div>
+                <div className="inline-block font-black text-xs uppercase tracking-widest px-3 py-1.5 mb-6"
+                  style={{ background: R, color: "#fff", letterSpacing: "0.08em" }}>
+                  {r.result}
                 </div>
-                <div>
-                  <div className="font-semibold text-white text-sm">{r.name}</div>
-                  <div className="text-slate-400 text-xs">{r.role}</div>
-                </div>
+                <p className="text-base leading-relaxed" style={{ opacity: 0.65 }}>{r.text}</p>
+              </div>
+              <div className="pt-6 mt-6" style={{ borderTop: `2px solid ${i === 1 ? "rgba(255,255,255,0.1)" : "#0a0a0a"}` }}>
+                <div className="font-black text-sm">{r.name}</div>
+                <div className="font-bold text-xs uppercase tracking-widest mt-1" style={{ color: R, letterSpacing: "0.08em" }}>{r.role}</div>
               </div>
             </div>
           ))}

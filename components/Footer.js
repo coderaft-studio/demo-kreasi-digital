@@ -1,52 +1,53 @@
+const R = "#e51e2a";
+
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-slate-800 text-slate-400">
-      <div className="max-w-6xl mx-auto px-6 py-14">
-        <div className="grid md:grid-cols-4 gap-10 mb-10">
-          <div className="md:col-span-2">
-            <div className="text-white font-bold text-2xl mb-3">
-              Kreasi<span className="text-cyan-400">Digital</span>™
+    <footer style={{ background: "#0a0a0a", borderTop: "2px solid #0a0a0a" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4" style={{ borderBottom: "2px solid rgba(255,255,255,0.08)" }}>
+          {/* Brand */}
+          <div className="col-span-2 p-8 sm:p-10" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
+            <div className="font-black text-3xl text-white mb-3" style={{ letterSpacing: "-0.03em" }}>
+              KREASI<span style={{ color: R }}>DIGITAL</span>
             </div>
-            <p className="text-sm leading-relaxed mb-5 max-w-xs">
-              Digital agency terpercaya yang membantu bisnis Indonesia tumbuh dan berkembang di era digital.
+            <p className="text-sm max-w-xs" style={{ color: "rgba(255,255,255,0.3)", lineHeight: "1.6" }}>
+              Digital agency terpercaya yang membantu bisnis Indonesia tumbuh di era digital.
             </p>
-            <div className="flex gap-3">
-              {["in", "ig", "tw", "yt"].map((s) => (
-                <a key={s} href="#"
-                  className="w-9 h-9 bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 rounded-lg flex items-center justify-center text-xs font-bold transition-all uppercase">
-                  {s}
-                </a>
-              ))}
-            </div>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4 text-sm">Layanan</h4>
-            <ul className="space-y-2 text-sm">
-              {["Web Development", "Digital Marketing", "Branding & Desain", "Konsultasi Strategi", "SEO & Optimasi"].map((l) => (
-                <li key={l}><a href="#layanan" className="hover:text-cyan-400 transition-colors">{l}</a></li>
+          {/* Layanan */}
+          <div className="p-8 sm:p-10" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
+            <h4 className="font-black text-xs uppercase tracking-widest mb-5 text-white" style={{ letterSpacing: "0.12em" }}>Layanan</h4>
+            <ul className="space-y-2.5">
+              {["Web Dev", "Digital Marketing", "Branding", "SEO", "Konsultasi"].map(l => (
+                <li key={l}><a href="#layanan" style={{ color: "rgba(255,255,255,0.3)", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}>{l}</a></li>
               ))}
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4 text-sm">Kontak</h4>
-            <ul className="space-y-2 text-sm">
-              <li>📍 Jakarta Selatan</li>
-              <li>📞 +62 812-3456-7890</li>
-              <li>📧 hello@kreasdigital.id</li>
+          {/* Contact */}
+          <div className="p-8 sm:p-10">
+            <h4 className="font-black text-xs uppercase tracking-widest mb-5 text-white" style={{ letterSpacing: "0.12em" }}>Kontak</h4>
+            <ul className="space-y-2.5 text-sm" style={{ color: "rgba(255,255,255,0.3)", fontWeight: 600 }}>
+              <li>+62 812-3456-7890</li>
+              <li>hello@kreasdigital.id</li>
+              <li>Jakarta Selatan</li>
               <li className="pt-2">
-                <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer"
-                  className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold inline-block transition-colors">
-                  Chat WhatsApp
+                <a href="#kontak" className="font-black text-xs uppercase tracking-widest px-4 py-2.5 inline-block"
+                  style={{ background: R, color: "#fff", textDecoration: "none", letterSpacing: "0.08em" }}>
+                  Konsultasi →
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
-          <p>© 2024 Kreasi Digital. All rights reserved.</p>
+
+        <div className="flex flex-col sm:flex-row justify-between items-center py-6 gap-3">
+          <p className="font-bold text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em" }}>
+            © 2024 Kreasi Digital · All Rights Reserved
+          </p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-cyan-400 transition-colors">Terms of Service</a>
+            {["Privacy", "Terms"].map(t => (
+              <a key={t} href="#" className="font-bold text-xs uppercase" style={{ color: "rgba(255,255,255,0.2)", textDecoration: "none", letterSpacing: "0.08em" }}>{t}</a>
+            ))}
           </div>
         </div>
       </div>

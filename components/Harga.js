@@ -1,108 +1,69 @@
+const R = "#e51e2a";
+
 const paket = [
-  {
-    nama: "Starter",
-    harga: "3.500.000",
-    per: "/ proyek",
-    desc: "Cocok untuk bisnis yang baru mulai go digital",
-    highlight: false,
-    fitur: [
-      "Landing page 1 halaman",
-      "Desain profesional responsif",
-      "Optimasi SEO dasar",
-      "Integrasi WhatsApp & Google Maps",
-      "Hosting setup & domain",
-      "1 bulan support",
-    ],
-    cta: "Mulai Sekarang",
-  },
-  {
-    nama: "Growth",
-    harga: "8.500.000",
-    per: "/ proyek",
-    desc: "Solusi lengkap untuk bisnis yang ingin berkembang pesat",
-    highlight: true,
-    fitur: [
-      "Website multi-halaman (5–10 hal)",
-      "Desain custom UI/UX premium",
-      "SEO on-page & off-page",
-      "Integrasi Google Analytics",
-      "3 bulan manajemen konten",
-      "Iklan Google/Meta setup",
-      "3 bulan support prioritas",
-    ],
-    cta: "Paling Populer",
-  },
-  {
-    nama: "Enterprise",
-    harga: "Custom",
-    per: "hubungi kami",
-    desc: "Solusi enterprise skala besar & kebutuhan khusus",
-    highlight: false,
-    fitur: [
-      "Web app / platform custom",
-      "Strategi digital marketing menyeluruh",
-      "Dedicated account manager",
-      "SLA & laporan bulanan",
-      "Integrasi API & sistem pihak ketiga",
-      "Support & maintenance 12 bulan",
-    ],
-    cta: "Diskusi Kebutuhan",
-  },
+  { no: "01", nama: "Starter",    harga: "3.500.000", desc: "Mulai go digital", fitur: ["Landing page 1 halaman", "Desain responsif", "SEO dasar", "WhatsApp & Maps", "1 bulan support"] },
+  { no: "02", nama: "Growth",     harga: "8.500.000", desc: "Solusi lengkap", fitur: ["Website 5–10 halaman", "UI/UX premium", "SEO on & off page", "Analytics setup", "Google/Meta Ads", "3 bulan support"], featured: true },
+  { no: "03", nama: "Enterprise", harga: "Custom",     desc: "Skala besar",   fitur: ["Web app custom", "Strategi menyeluruh", "Dedicated manager", "SLA & laporan", "API integration", "Support 12 bulan"] },
 ];
 
 export default function Harga() {
   return (
-    <section id="harga" className="py-24 bg-slate-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm mb-3">Investasi</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Paket <span className="text-cyan-400">Harga</span> Transparan
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
-            Harga jelas tanpa biaya tersembunyi. Pilih paket yang sesuai kebutuhan bisnis Anda.
-          </p>
+    <section id="harga" style={{ background: "#fff", borderTop: "2px solid #0a0a0a" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="grid grid-cols-2 sm:grid-cols-4" style={{ borderBottom: "2px solid #0a0a0a" }}>
+          <div className="p-6 sm:p-8" style={{ borderRight: "2px solid #0a0a0a" }}>
+            <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Investasi</span>
+          </div>
+          <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center">
+            <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
+              Harga Jelas, Tanpa Kejutan
+            </h2>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 items-start">
-          {paket.map((p) => (
-            <div key={p.nama}
-              className={`rounded-2xl p-8 border relative ${
-                p.highlight
-                  ? "bg-cyan-500 border-cyan-400 shadow-2xl shadow-cyan-500/25 scale-105"
-                  : "bg-slate-800/50 border-slate-700/50"
-              }`}>
-              {p.highlight && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-950 text-cyan-400 text-xs font-bold px-4 py-1.5 rounded-full border border-cyan-500">
-                  ⭐ TERPOPULER
+        {/* Pricing */}
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          {paket.map((p, i) => (
+            <div key={p.no} className="flex flex-col"
+              style={{
+                background: p.featured ? "#0a0a0a" : "#fff",
+                color: p.featured ? "#fff" : "#0a0a0a",
+                borderRight: i < 2 ? "2px solid #0a0a0a" : "none",
+                borderBottom: "2px solid #0a0a0a",
+              }}>
+              {/* Top */}
+              <div className="p-7 sm:p-8" style={{ borderBottom: `2px solid ${p.featured ? "rgba(255,255,255,0.12)" : "#0a0a0a"}` }}>
+                {p.featured && (
+                  <div className="font-black text-xs uppercase tracking-widest px-3 py-1.5 mb-4 inline-block"
+                    style={{ background: R, color: "#fff", letterSpacing: "0.08em" }}>⭐ Terpopuler</div>
+                )}
+                <div className="font-black text-xs uppercase tracking-widest mb-2" style={{ color: R, letterSpacing: "0.12em" }}>
+                  {p.no} · {p.nama}
                 </div>
-              )}
-              <div className={`text-sm font-semibold mb-1 ${p.highlight ? "text-slate-900" : "text-cyan-400"}`}>
-                {p.nama}
+                <div className="font-black leading-none mb-1" style={{ fontSize: "clamp(2rem,5vw,3.5rem)", letterSpacing: "-0.04em" }}>
+                  {p.harga === "Custom" ? "Custom" : `Rp ${p.harga}`}
+                </div>
+                <div className="font-bold text-xs uppercase tracking-widest mt-2" style={{ opacity: 0.35, letterSpacing: "0.1em" }}>
+                  {p.harga === "Custom" ? "hubungi kami" : "per proyek"}
+                </div>
               </div>
-              <div className={`text-4xl font-bold mb-1 ${p.highlight ? "text-slate-950" : "text-white"}`}>
-                {p.harga === "Custom" ? "Custom" : `Rp ${p.harga}`}
+              {/* Features */}
+              <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
+                <ul className="space-y-3 mb-8">
+                  {p.fitur.map(f => (
+                    <li key={f} className="flex items-start gap-3 text-sm">
+                      <span style={{ color: R, fontWeight: 900 }}>✓</span>
+                      <span style={{ opacity: 0.6 }}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href="#kontak"
+                  className="block text-center font-black text-xs uppercase tracking-widest py-4 transition-all hover:opacity-75"
+                  style={{ background: p.featured ? R : "#0a0a0a", color: "#fff", textDecoration: "none", letterSpacing: "0.1em" }}>
+                  {p.nama === "Enterprise" ? "Hubungi Kami" : "Mulai Sekarang"}
+                </a>
               </div>
-              <div className={`text-sm mb-3 ${p.highlight ? "text-slate-800" : "text-slate-500"}`}>{p.per}</div>
-              <p className={`text-sm mb-6 leading-relaxed ${p.highlight ? "text-slate-800" : "text-slate-400"}`}>
-                {p.desc}
-              </p>
-              <ul className="space-y-3 mb-8">
-                {p.fitur.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span className={`mt-0.5 flex-shrink-0 ${p.highlight ? "text-slate-900" : "text-cyan-400"}`}>✓</span>
-                    <span className={`text-sm ${p.highlight ? "text-slate-900" : "text-slate-300"}`}>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a href="#kontak"
-                className={`block text-center py-3 px-6 rounded-xl font-bold transition-all ${
-                  p.highlight
-                    ? "bg-slate-950 text-cyan-400 hover:bg-slate-900"
-                    : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500 hover:text-slate-950"
-                }`}>
-                {p.cta}
-              </a>
             </div>
           ))}
         </div>

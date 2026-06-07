@@ -1,53 +1,82 @@
+const R = "#e51e2a";
+
+const services = ["Web Development", "Digital Marketing", "Branding & Desain", "SEO & Optimasi", "Konsultasi Strategi"];
+
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-slate-950 flex items-center relative overflow-hidden">
-      {/* Background grid effect */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
-      {/* Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+    <section style={{ background: "#fff", paddingTop: "56px" }}>
+      {/* Top bar */}
+      <div style={{ borderBottom: "2px solid #0a0a0a" }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-10 flex justify-between items-center">
+          <span className="font-black text-xs uppercase tracking-widest" style={{ color: "rgba(10,10,10,0.3)", letterSpacing: "0.2em" }}>
+            Est. 2018 · Jakarta · Indonesia
+          </span>
+          <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>
+            ● Open for Projects
+          </span>
+        </div>
+      </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 grid md:grid-cols-2 gap-16 items-center">
-        {/* Text */}
-        <div>
-          <div className="inline-flex items-center gap-2 bg-cyan-950/50 border border-cyan-800/50 text-cyan-400 text-xs font-semibold px-4 py-2 rounded-full mb-6">
-            <span className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-            Digital Agency #1 Indonesia
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Main grid */}
+        <div className="grid lg:grid-cols-12" style={{ borderBottom: "2px solid #0a0a0a" }}>
+          {/* Headline */}
+          <div className="lg:col-span-8 py-12 sm:py-16 pr-0 lg:pr-8" style={{ borderRight: "2px solid #0a0a0a" }}>
+            <h1 className="font-black leading-none" style={{ fontSize: "clamp(3.5rem,11vw,9.5rem)", letterSpacing: "-0.05em", lineHeight: "0.9", color: "#0a0a0a" }}>
+              DIGITAL<br />
+              <span style={{ color: R }}>AGENCY</span><br />
+              UNTUK<br />
+              BISNIS<br />
+              ANDA.
+            </h1>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-            Transformasi
-            <span className="text-cyan-400 block">Digital</span>
-            untuk Bisnis Anda
-          </h1>
-          <p className="text-slate-400 text-lg leading-relaxed mb-8">
-            Kami hadir untuk membantu bisnis Anda tumbuh di era digital — mulai dari
-            website, branding, digital marketing, hingga strategi pertumbuhan yang terukur.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#kontak"
-              className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 px-8 py-4 rounded-lg font-bold text-lg transition-colors text-center">
-              Konsultasi Gratis →
-            </a>
-            <a href="#portofolio"
-              className="border border-slate-700 hover:border-cyan-500 text-slate-300 hover:text-cyan-400 px-8 py-4 rounded-lg font-semibold text-lg transition-all text-center">
-              Lihat Portofolio
-            </a>
+
+          {/* Right */}
+          <div className="lg:col-span-4 flex flex-col" style={{ borderTop: "2px solid #0a0a0a" }}>
+            <div className="p-6 sm:p-8 flex-1" style={{ borderBottom: "2px solid #0a0a0a" }}>
+              <p className="text-base leading-relaxed mb-6" style={{ color: "rgba(10,10,10,0.5)" }}>
+                Kami hadir untuk membawa bisnis Anda ke level berikutnya melalui strategi digital yang terukur dan berdampak nyata.
+              </p>
+              <div className="flex gap-3">
+                <a href="#kontak" className="font-black text-xs uppercase tracking-widest px-5 py-3 transition-all hover:opacity-75"
+                  style={{ background: "#0a0a0a", color: "#fff", textDecoration: "none", letterSpacing: "0.1em" }}>
+                  Mulai →
+                </a>
+                <a href="#portofolio" className="font-bold text-xs uppercase tracking-widest px-5 py-3 transition-all"
+                  style={{ border: "2px solid #0a0a0a", color: "#0a0a0a", textDecoration: "none", letterSpacing: "0.1em" }}>
+                  Karya
+                </a>
+              </div>
+            </div>
+            {/* Stats */}
+            <div className="grid grid-cols-3">
+              {[{ num: "150+", label: "Proyek" }, { num: "4.9★", label: "Rating" }, { num: "98%", label: "Puas" }].map((s, i) => (
+                <div key={s.label} className="p-4 sm:p-5 text-center"
+                  style={{ borderRight: i < 2 ? "2px solid #0a0a0a" : "none" }}>
+                  <div className="font-black text-2xl" style={{ color: R }}>{s.num}</div>
+                  <div className="font-bold text-xs uppercase tracking-widest mt-1" style={{ color: "rgba(10,10,10,0.3)", letterSpacing: "0.1em" }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Stats card */}
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { num: "150+", label: "Proyek Selesai", icon: "🚀" },
-            { num: "98%", label: "Klien Puas", icon: "⭐" },
-            { num: "5+", label: "Tahun Pengalaman", icon: "🏆" },
-            { num: "24/7", label: "Support Aktif", icon: "💬" },
-          ].map((s) => (
-            <div key={s.label}
-              className="bg-slate-900 border border-slate-800 hover:border-cyan-800/50 rounded-2xl p-6 transition-colors">
-              <div className="text-3xl mb-2">{s.icon}</div>
-              <div className="text-3xl font-bold text-cyan-400 mb-1">{s.num}</div>
-              <div className="text-slate-400 text-sm">{s.label}</div>
+        {/* Services strip */}
+        <div className="flex overflow-x-auto" style={{ borderBottom: "2px solid #0a0a0a" }}>
+          {services.map((s, i) => (
+            <div key={s} className="flex-shrink-0 flex items-center gap-4 px-6 py-4"
+              style={{ borderRight: i < services.length - 1 ? "2px solid #0a0a0a" : "none" }}>
+              <span className="font-black text-xs" style={{ color: R }}>{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-bold text-xs uppercase tracking-widest whitespace-nowrap" style={{ letterSpacing: "0.08em" }}>{s}</span>
             </div>
+          ))}
+        </div>
+
+        {/* Clients */}
+        <div className="flex flex-wrap gap-8 py-4 items-center">
+          <span className="font-black text-xs uppercase tracking-widest" style={{ color: "rgba(10,10,10,0.2)", letterSpacing: "0.15em" }}>Klien:</span>
+          {["Tokopedia", "Gojek", "BCA", "Pertamina", "Unilever"].map(c => (
+            <span key={c} className="font-black text-sm" style={{ color: "rgba(10,10,10,0.18)" }}>{c}</span>
           ))}
         </div>
       </div>

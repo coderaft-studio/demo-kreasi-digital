@@ -1,50 +1,78 @@
 import Image from "next/image";
 
-const projects = [
-  { title: "Toko Online Batik Nusantara", cat: "Web Development", img: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&q=80", tag: "E-Commerce" },
-  { title: "Kampanye Digital Brand Kuliner", cat: "Digital Marketing", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80", tag: "Marketing" },
-  { title: "Rebranding Startup Fintech", cat: "Branding & Desain", img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80", tag: "Branding" },
-  { title: "Landing Page Properti Premium", cat: "Web Development", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", tag: "Landing Page" },
-  { title: "Strategi SEO Platform Edukasi", cat: "Optimasi & SEO", img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&q=80", tag: "SEO" },
-  { title: "Dashboard Analytics UMKM", cat: "Web Development", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", tag: "Web App" },
-];
+const R = "#e51e2a";
 
-const tagColor = {
-  "E-Commerce": "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
-  "Marketing": "bg-violet-500/20 text-violet-300 border-violet-500/30",
-  "Branding": "bg-pink-500/20 text-pink-300 border-pink-500/30",
-  "Landing Page": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-  "SEO": "bg-amber-500/20 text-amber-300 border-amber-500/30",
-  "Web App": "bg-blue-500/20 text-blue-300 border-blue-500/30",
-};
+const projects = [
+  { title: "Toko Online Batik Nusantara",   cat: "Web Dev",   img: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80", year: "2025" },
+  { title: "Kampanye Digital Brand Kuliner", cat: "Marketing", img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=700&q=80", year: "2024" },
+  { title: "Rebranding Startup Fintech",     cat: "Branding",  img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=80", year: "2024" },
+  { title: "Landing Page Properti Premium",  cat: "Web Dev",   img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80", year: "2025" },
+  { title: "SEO Platform Edukasi",           cat: "SEO",       img: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=700&q=80", year: "2024" },
+  { title: "Dashboard Analytics UMKM",       cat: "Web App",   img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80", year: "2025" },
+];
 
 export default function Portofolio() {
   return (
-    <section id="portofolio" className="py-24 bg-slate-950">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-cyan-400 font-semibold tracking-widest uppercase text-sm mb-3">Hasil Kerja Kami</p>
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Portofolio <span className="text-cyan-400">Terpilih</span>
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
-            Beberapa proyek terbaik yang telah kami kerjakan untuk klien dari berbagai industri
-          </p>
+    <section id="portofolio" style={{ background: "#fff", borderTop: "2px solid #0a0a0a" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Header */}
+        <div className="grid grid-cols-2 sm:grid-cols-4" style={{ borderBottom: "2px solid #0a0a0a" }}>
+          <div className="p-6 sm:p-8" style={{ borderRight: "2px solid #0a0a0a" }}>
+            <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Portofolio</span>
+          </div>
+          <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center justify-between">
+            <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>Karya Terpilih</h2>
+            <a href="#kontak" className="hidden sm:block font-bold text-xs uppercase tracking-widest underline underline-offset-4"
+              style={{ color: R, textDecoration: "none", borderBottom: `1.5px solid ${R}`, letterSpacing: "0.1em" }}>
+              Diskusi Project →
+            </a>
+          </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p) => (
-            <div key={p.title} className="group relative rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/40 transition-all">
-              <div className="relative h-48">
-                <Image src={p.img} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-all" />
-                <span className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full border ${tagColor[p.tag]}`}>
-                  {p.tag}
+        {/* Featured */}
+        <div style={{ borderBottom: "2px solid #0a0a0a" }}>
+          <div className="grid lg:grid-cols-2" style={{ height: "400px" }}>
+            <div className="relative" style={{ borderRight: "2px solid #0a0a0a" }}>
+              <Image src={projects[0].img} alt={projects[0].title} fill className="object-cover" />
+            </div>
+            <div className="p-8 flex flex-col justify-between" style={{ background: "#0a0a0a" }}>
+              <div>
+                <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>
+                  {projects[0].cat} · {projects[0].year}
                 </span>
               </div>
-              <div className="p-5 bg-slate-900">
-                <p className="text-cyan-400 text-xs font-medium mb-1">{p.cat}</p>
-                <h3 className="text-white font-bold">{p.title}</h3>
+              <div>
+                <h3 className="font-black text-3xl sm:text-4xl text-white mb-6 leading-tight" style={{ letterSpacing: "-0.03em" }}>
+                  {projects[0].title}
+                </h3>
+                <a href="#kontak" className="font-black text-xs uppercase tracking-widest px-6 py-3 transition-all hover:opacity-75 inline-block"
+                  style={{ background: R, color: "#fff", textDecoration: "none", letterSpacing: "0.1em" }}>
+                  Diskusi Serupa →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.slice(1).map((p, i) => (
+            <div key={p.title} className="group"
+              style={{ borderRight: (i + 1) % 3 !== 0 ? "2px solid #0a0a0a" : "none", borderBottom: "2px solid #0a0a0a" }}>
+              <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                <Image src={p.img} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ background: "rgba(10,10,10,0.7)" }}>
+                  <div className="absolute bottom-4 left-4">
+                    <div className="font-black text-white text-sm">{p.title}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 flex items-center justify-between" style={{ borderTop: "2px solid #0a0a0a" }}>
+                <div>
+                  <div className="font-black text-sm">{p.title}</div>
+                  <div className="font-bold text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.1em" }}>{p.cat} · {p.year}</div>
+                </div>
               </div>
             </div>
           ))}
