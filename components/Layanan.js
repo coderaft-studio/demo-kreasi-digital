@@ -1,4 +1,32 @@
 "use client";
+import { useEffect, useRef } from "react";
+
+function WordSlide({ text }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      obs.disconnect();
+      el.classList.add("visible");
+    }, { threshold: 0.4 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <span ref={ref} className="word-slide">
+      {text.split(" ").map((word, i) => (
+        <span key={i} className="w"
+          style={{ animationDelay: (i * 0.08) + "s", marginRight: "0.28em" }}>
+          {word}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+
 const R = "#e51e2a";
 
 const layanan = [
@@ -21,30 +49,32 @@ export default function Layanan() {
           </div>
           <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center">
             <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
-              Solusi Digital Lengkap untuk Bisnis Anda
+              <WordSlide text="Solusi Digital Lengkap untuk Bisnis Anda" />
             </h2>
           </div>
         </div>
 
-        {/* Services list */}
+        {/* Services list — scanner reveal */}
         {layanan.map((l, i) => (
-          <div key={l.no} className="grid grid-cols-12 items-start py-6 sm:py-8 cursor-pointer"
-            style={{ borderBottom: "2px solid #0a0a0a", transition: "background 0.15s, color 0.15s", color: "#0a0a0a" }}
-            onMouseEnter={e => { e.currentTarget.style.background = "#0a0a0a"; e.currentTarget.style.color = "#ffffff"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0a0a0a"; }}>
-            <div className="col-span-1 px-4 sm:px-6 pt-1">
-              <span className="font-black text-sm" style={{ color: R }}>{l.no}</span>
-            </div>
-            <div className="col-span-11 sm:col-span-4 px-2 sm:px-4">
-              <h3 className="font-black text-lg sm:text-xl mb-2 leading-tight" style={{ letterSpacing: "-0.02em" }}>{l.title}</h3>
-            </div>
-            <div className="col-span-11 col-start-2 sm:col-span-5 sm:col-start-6 px-2 sm:px-4">
-              <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{l.desc}</p>
-            </div>
-            <div className="col-span-11 col-start-2 sm:col-span-2 sm:col-start-11 px-2 sm:px-4 mt-2 sm:mt-0 flex flex-wrap gap-1.5">
-              {l.tags.map(t => (
-                <span key={t} className="text-xs font-bold uppercase px-2 py-1" style={{ border: "1.5px solid currentColor", opacity: 0.45, letterSpacing: "0.06em" }}>{t}</span>
-              ))}
+          <div key={l.no} className="scan-row" style={{ '--delay': (i * 0.12) + 's' }}>
+            <div className="scan-content grid grid-cols-12 items-start py-6 sm:py-8 cursor-pointer"
+              style={{ borderBottom: "2px solid #0a0a0a", transition: "background 0.15s, color 0.15s", color: "#0a0a0a" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#0a0a0a"; e.currentTarget.style.color = "#ffffff"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0a0a0a"; }}>
+              <div className="col-span-1 px-4 sm:px-6 pt-1">
+                <span className="font-black text-sm" style={{ color: R }}>{l.no}</span>
+              </div>
+              <div className="col-span-11 sm:col-span-4 px-2 sm:px-4">
+                <h3 className="font-black text-lg sm:text-xl mb-2 leading-tight" style={{ letterSpacing: "-0.02em" }}>{l.title}</h3>
+              </div>
+              <div className="col-span-11 col-start-2 sm:col-span-5 sm:col-start-6 px-2 sm:px-4">
+                <p className="text-sm leading-relaxed" style={{ opacity: 0.6 }}>{l.desc}</p>
+              </div>
+              <div className="col-span-11 col-start-2 sm:col-span-2 sm:col-start-11 px-2 sm:px-4 mt-2 sm:mt-0 flex flex-wrap gap-1.5">
+                {l.tags.map(t => (
+                  <span key={t} className="text-xs font-bold uppercase px-2 py-1" style={{ border: "1.5px solid currentColor", opacity: 0.45, letterSpacing: "0.06em" }}>{t}</span>
+                ))}
+              </div>
             </div>
           </div>
         ))}

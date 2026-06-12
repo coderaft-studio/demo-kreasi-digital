@@ -19,7 +19,7 @@ export default function Testimoni() {
             <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Testimoni</span>
           </div>
           <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center justify-between">
-            <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>Kata Klien Kami</h2>
+            <h2 className="font-black rv clip" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>Kata Klien Kami</h2>
             <div className="hidden sm:flex items-center gap-2">
               <span style={{ color: "#f59e0b", fontSize: "20px" }}>★★★★★</span>
               <span className="font-black text-xl">4.9</span>
@@ -30,7 +30,7 @@ export default function Testimoni() {
         {/* Reviews */}
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {reviews.map((r, i) => (
-            <div key={r.no} className="p-8 sm:p-10 flex flex-col justify-between"
+            <div key={r.no} className={"p-8 sm:p-10 flex flex-col justify-between rv " + (i===0?"left":i===2?"right":"up")} style={{ transitionDelay: (i*0.12)+"s" }}
               style={{
                 background: i === 1 ? "#0a0a0a" : "#fff",
                 color: i === 1 ? "#fff" : "#0a0a0a",

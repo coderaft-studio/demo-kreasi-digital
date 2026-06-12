@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-2 sm:grid-cols-4" style={{ borderBottom: "2px solid rgba(255,255,255,0.08)" }}>
           {/* Brand */}
-          <div className="col-span-2 p-8 sm:p-10" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
+          <div className="col-span-2 p-8 sm:p-10 rv up" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
             <div className="font-black text-3xl text-white mb-3" style={{ letterSpacing: "-0.03em" }}>
               KREASI<span style={{ color: R }}>DIGITAL</span>
             </div>
@@ -15,7 +15,7 @@ export default function Footer() {
             </p>
           </div>
           {/* Layanan */}
-          <div className="p-8 sm:p-10" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
+          <div className="p-8 sm:p-10 rv up d2" style={{ borderRight: "2px solid rgba(255,255,255,0.08)" }}>
             <h4 className="font-black text-xs uppercase tracking-widest mb-5 text-white" style={{ letterSpacing: "0.12em" }}>Layanan</h4>
             <ul className="space-y-2.5">
               {["Web Dev", "Digital Marketing", "Branding", "SEO", "Konsultasi"].map(l => (
@@ -24,7 +24,7 @@ export default function Footer() {
             </ul>
           </div>
           {/* Contact */}
-          <div className="p-8 sm:p-10">
+          <div className="p-8 sm:p-10 rv up d3">
             <h4 className="font-black text-xs uppercase tracking-widest mb-5 text-white" style={{ letterSpacing: "0.12em" }}>Kontak</h4>
             <ul className="space-y-2.5 text-sm" style={{ color: "rgba(255,255,255,0.3)", fontWeight: 600 }}>
               <li>+62 812-3456-7890</li>
@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center py-6 gap-3">
+        <div className="flex flex-col sm:flex-row justify-between items-center py-6 gap-3 rv up d4">
           <p className="font-bold text-xs uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.2)", letterSpacing: "0.1em" }}>
             © 2024 Kreasi Digital · All Rights Reserved
           </p>

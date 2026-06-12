@@ -1,4 +1,5 @@
 "use client";
+import WipeHeading from "@/components/WipeHeading";
 import { useState } from "react";
 
 const R = "#e51e2a";
@@ -24,25 +25,25 @@ export default function Kontak() {
           </div>
           <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center">
             <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
-              Siap Berkembang Bersama?
+              <WipeHeading text="Siap Berkembang Bersama?" style={{ fontSize:"clamp(1.5rem,4vw,2.5rem)", letterSpacing:"-0.03em", fontWeight:900 }}/>
             </h2>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-2" style={{ borderBottom: "2px solid #0a0a0a" }}>
-          <div className="p-8 sm:p-12" style={{ borderRight: "2px solid #0a0a0a" }}>
+          <div className="p-8 sm:p-12 rv left" style={{ borderRight: "2px solid #0a0a0a" }}>
             <p className="text-lg leading-relaxed mb-10" style={{ color: "rgba(10,10,10,0.5)" }}>
               Konsultasi pertama <strong style={{ color: "#0a0a0a" }}>GRATIS</strong>. Ceritakan kebutuhan bisnis Anda dan kami siapkan proposal dalam 24 jam.
             </p>
-            {[{ l: "WhatsApp", v: "+62 812-3456-7890" }, { l: "Email", v: "hello@kreasdigital.id" }, { l: "Lokasi", v: "Jakarta Selatan" }, { l: "Jam", v: "Senin–Jumat, 09.00–18.00" }].map(item => (
-              <div key={item.l} className="grid grid-cols-3 py-4" style={{ borderBottom: "1.5px solid rgba(10,10,10,0.07)" }}>
+            {[{ l: "WhatsApp", v: "+62 812-3456-7890" }, { l: "Email", v: "hello@kreasdigital.id" }, { l: "Lokasi", v: "Jakarta Selatan" }, { l: "Jam", v: "Senin–Jumat, 09.00–18.00" }].map((item, idx) => (
+              <div key={item.l} className={"grid grid-cols-3 py-4 rv up d" + (idx+1)} style={{ borderBottom: "1.5px solid rgba(10,10,10,0.07)" }}>
                 <span className="font-black text-xs uppercase tracking-widest" style={{ color: "rgba(10,10,10,0.3)", letterSpacing: "0.1em" }}>{item.l}</span>
                 <span className="font-bold text-sm col-span-2">{item.v}</span>
               </div>
             ))}
           </div>
 
-          <div className="p-8 sm:p-12">
+          <div className="p-8 sm:p-12 rv right">
             {sent ? (
               <div className="flex flex-col items-start justify-center h-full gap-4">
                 <div className="font-black text-4xl" style={{ color: R }}>✓</div>

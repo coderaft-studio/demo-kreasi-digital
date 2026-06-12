@@ -16,7 +16,7 @@ export default function Harga() {
             <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Investasi</span>
           </div>
           <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center">
-            <h2 className="font-black" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
+            <h2 className="font-black rv clip" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
               Harga Jelas, Tanpa Kejutan
             </h2>
           </div>
@@ -25,7 +25,7 @@ export default function Harga() {
         {/* Pricing */}
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {paket.map((p, i) => (
-            <div key={p.no} className="flex flex-col"
+            <div key={p.no} className="flex flex-col rv scale" style={{ transitionDelay: (i * 0.15) + "s" }}
               style={{
                 background: p.featured ? "#0a0a0a" : "#fff",
                 color: p.featured ? "#fff" : "#0a0a0a",

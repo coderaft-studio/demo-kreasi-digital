@@ -6,4 +6,138 @@ body {
   font-family: Arial, sans-serif;
   color: #0f172a;
   background: #ffffff;
+  cursor: none;
+}
+
+/* Cursor */
+.cursor-dot {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #e51e2a; transform: translate(-50%,-50%);
+  transition: width 0.2s, height 0.2s;
+}
+.cursor-ring {
+  position: fixed; z-index: 9998; pointer-events: none;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid rgba(229,30,42,0.5);
+  transform: translate(-50%,-50%);
+  transition: width 0.25s, height 0.25s, opacity 0.2s;
+}
+.cursor-dot.hovered { width: 16px; height: 16px; }
+.cursor-ring.hovered { width: 56px; height: 56px; opacity: 0.25; }
+.cursor-text { position: fixed; z-index: 9999; pointer-events: none; font-size: 9px; font-weight: 900; letter-spacing: 0.1em; color: #fff; transform: translate(-50%,-50%); display: none; }
+.cursor-text.show { display: block; }
+
+/* Scroll progress */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 9997;
+  height: 3px; background: #e51e2a; width: 0%;
+}
+
+/* Reveal */
+.rv { opacity: 0; transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1); }
+.rv.up    { transform: translateY(48px); }
+.rv.left  { transform: translateX(-56px); }
+.rv.right { transform: translateX(56px); }
+.rv.scale { transform: scale(0.88); }
+.rv.visible { opacity: 1; transform: none; }
+.rv.clip {
+  clip-path: inset(0 100% 0 0); transform: none; opacity: 1;
+  transition: clip-path 0.9s cubic-bezier(.77,0,.175,1);
+}
+.rv.clip.visible { clip-path: inset(0 0% 0 0); }
+
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* Letter stagger */
+.letter-wrap .ch span {
+  display: inline-block;
+  transform: translateY(110%); opacity: 0;
+  transition: transform 0.6s cubic-bezier(.22,1,.36,1), opacity 0.4s ease;
+}
+.letter-wrap.visible .ch span { transform: translateY(0); opacity: 1; }
+
+/* Marquee */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-inner { animation: marquee 22s linear infinite; display: flex; width: max-content; }
+.marquee-inner:hover { animation-play-state: paused; }
+
+
+
+/* Line draw */
+@keyframes lineDraw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.line-draw { transform-origin: left; transform: scaleX(0); }
+.line-draw.visible { animation: lineDraw 0.8s cubic-bezier(.77,0,.175,1) forwards; }
+
+a, button, [role=button] { cursor: none; }
+
+/* ── Scanner row reveal (Layanan) ── */
+@keyframes rowSlideIn {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.scan-row {
+  position: relative;
+  overflow: hidden;
+}
+.scan-row .scan-content {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.scan-row::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: -4px;
+  width: 3px;
+  background: #e51e2a;
+  box-shadow: 0 0 16px 3px rgba(229,30,42,0.7);
+  transition: transform 0.4s var(--delay, 0s) cubic-bezier(.77,0,.175,1);
+  z-index: 5;
+}
+.scan-row.vis::after {
+  transform: translateX(115vw);
+}
+.scan-row.vis .scan-content {
+  animation: rowSlideIn 0.55s var(--delay, 0s) cubic-bezier(.22,1,.36,1) forwards;
+}
+
+/* ── Crash from above (Portfolio featured) ── */
+.crash-in {
+  opacity: 0;
+  transform: translateY(-48px) scale(0.95);
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(.34,1.56,.64,1);
+}
+.crash-in.visible { opacity: 1; transform: none; }
+
+/* ── Converge from sides (Portfolio grid) ── */
+.conv-left {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.93);
+  transition: opacity 0.55s var(--delay,0s) ease, transform 0.65s var(--delay,0s) cubic-bezier(.22,1,.36,1);
+}
+.conv-right {
+  opacity: 0;
+  transform: translateX(60px) scale(0.93);
+  transition: opacity 0.55s var(--delay,0s) ease, transform 0.65s var(--delay,0s) cubic-bezier(.22,1,.36,1);
+}
+.conv-left.visible, .conv-right.visible { opacity: 1; transform: none; }
+
+/* Word-by-word slide up */
+@keyframes wordUp {
+  from { transform: translateY(105%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.word-slide { overflow: hidden; display: inline-block; vertical-align: bottom; }
+.word-slide .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(105%);
+}
+.word-slide.visible .w {
+  animation: wordUp 0.6s cubic-bezier(.22,1,.36,1) forwards;
 }

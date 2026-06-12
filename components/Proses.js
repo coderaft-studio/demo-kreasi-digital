@@ -18,13 +18,13 @@ export default function Proses() {
             <span className="font-black text-xs uppercase tracking-widest" style={{ color: R, letterSpacing: "0.15em" }}>Proses</span>
           </div>
           <div className="col-span-1 sm:col-span-3 p-6 sm:p-8 flex items-center">
-            <h2 className="font-black text-white" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
+            <h2 className="font-black text-white rv clip" style={{ fontSize: "clamp(1.5rem,4vw,2.5rem)", letterSpacing: "-0.03em" }}>
               Transparan & Terstruktur
             </h2>
           </div>
         </div>
         {steps.map((s, i) => (
-          <div key={s.no} className="grid grid-cols-12 py-6 sm:py-8"
+          <div key={s.no} className="grid grid-cols-12 py-6 sm:py-8 rv up" style={{ transitionDelay: (i * 0.1) + "s" }}
             style={{ borderBottom: i < steps.length - 1 ? "2px solid rgba(255,255,255,0.08)" : "none" }}>
             <div className="col-span-2 sm:col-span-1 px-2 sm:px-6">
               <span className="font-black text-xl sm:text-3xl" style={{ color: R, lineHeight: "1" }}>{s.no}</span>
